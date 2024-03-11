@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class offer(models.Model):
+class offermodel(models.Model):
     images = models.ImageField(upload_to='images/', blank=True, null=True)
     username = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
@@ -27,14 +27,23 @@ class offer(models.Model):
     def __str__(self):
         return self.username
     
+# multiple images
+class offerImages(models.Model):
+    offerimg=models.ForeignKey(offermodel, on_delete=models.CASCADE,related_name="img")
+    image=models.ImageField(upload_to='images/', blank=True, null=True)
 
-class AddOffer(models.Model):
+#end multiple images
+
+
+
+
+class AddOffermodel(models.Model):
     price = models.FloatField()
     rent_start_time = models.DateField() 
     rent_finish_time = models.DateField()
 
 
-class request(models.Model):
+class requestmodel(models.Model):
     username = models.CharField(max_length=255)
     images = models.ImageField(upload_to='imageee/', blank=True, null=True)
     date=models.DateField()
@@ -42,7 +51,7 @@ class request(models.Model):
 
 
 
-class comment(models.Model):
+class commentmodel(models.Model):
      username = models.CharField(max_length=255)
      images = models.ImageField(upload_to='imagggeee/', blank=True, null=True)
      date=models.DateField()

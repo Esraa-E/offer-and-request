@@ -21,7 +21,8 @@ from rest_framework.authtoken.models import Token
 #start offer
 class offerr(APIView):
     def get(self, request):
-        offers = offer.objects.all()
+        # filterrrrrrrrrrrrrrrrr for priceeeeee
+        offers = offermodel.objects.all().order_by('-price')
         serializer = offerSerializer(offers, many=True)
         return Response({
             'status':200,'msg':'success',
@@ -51,8 +52,8 @@ class offer(APIView):
      
      def get(self,request,id):
          try:
-             offers=offer.objects.get(id=id)
-         except offer.DoesNotExist:
+             offers=offermodel.objects.get(id=id)
+         except offermodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'not found'} )
          serializer=offerSerializer(offers)
         
@@ -62,8 +63,8 @@ class offer(APIView):
  
      def put(self,request,id):
            try:
-             offers=offer.objects.get(id=id)
-           except offer.DoesNotExist:
+             offers=offermodel.objects.get(id=id)
+           except offermodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
            serializer= offerSerializer(offers,data=request.data)
           
@@ -77,8 +78,8 @@ class offer(APIView):
           
      def delete(self,request,id):
           try:
-             offers=offer.objects.get(id=id)
-          except offer.DoesNotExist:
+             offers=offermodel.objects.get(id=id)
+          except offermodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
         
           offers.delete()
@@ -92,7 +93,7 @@ class offer(APIView):
 # startadd offer
 class Addofferr(APIView):
     def get(self, request):
-        AddOffers = AddOffer.objects.all()
+        AddOffers = AddOffermodel.objects.all()
         serializer = addofferSerializer(AddOffers, many=True)
         return Response({
             'status':200,'msg':'success',
@@ -122,8 +123,8 @@ class Addoffer(APIView):
      
      def get(self,request,id):
          try:
-             AddOffers=AddOffer.objects.get(id=id)
-         except AddOffer.DoesNotExist:
+             AddOffers=AddOffermodel.objects.get(id=id)
+         except AddOffermodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'not found'} )
          serializer=addofferSerializer(AddOffers)
         
@@ -133,8 +134,8 @@ class Addoffer(APIView):
  
      def put(self,request,id):
            try:
-             AddOffers=AddOffer.objects.get(id=id)
-           except AddOffer.DoesNotExist:
+             AddOffers=AddOffermodel.objects.get(id=id)
+           except AddOffermodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
            serializer= addofferSerializer(AddOffers,data=request.data)
           
@@ -148,8 +149,8 @@ class Addoffer(APIView):
           
      def delete(self,request,id):
           try:
-             AddOffers=AddOffer.objects.get(id=id)
-          except AddOffer.DoesNotExist:
+             AddOffers=AddOffermodel.objects.get(id=id)
+          except AddOffermodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
         
           AddOffers.delete()
@@ -162,7 +163,7 @@ class Addoffer(APIView):
 # startrequest
 class requestt(APIView):
     def get(self, request):
-        requestt = request.objects.all()
+        requestt = requestmodel.objects.all()
         serializer = requesrSerializer(requestt, many=True)
         return Response({
             'status':200,'msg':'success',
@@ -192,8 +193,8 @@ class request(APIView):
      
      def get(self,request,id):
          try:
-             requestt=request.objects.get(id=id)
-         except request.DoesNotExist:
+             requestt=requestmodel.objects.get(id=id)
+         except requestmodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'not found'} )
          serializer=requesrSerializer(requestt)
         
@@ -203,8 +204,8 @@ class request(APIView):
  
      def put(self,request,id):
            try:
-             requestt=request.objects.get(id=id)
-           except request.DoesNotExist:
+             requestt=requestmodel.objects.get(id=id)
+           except requestmodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
            serializer= requesrSerializer(requestt,data=request.data)
           
@@ -218,8 +219,8 @@ class request(APIView):
           
      def delete(self,request,id):
           try:
-             requestt=request.objects.get(id=id)
-          except request.DoesNotExist:
+             requestt=requestmodel.objects.get(id=id)
+          except requestmodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
         
           requestt.delete()
@@ -230,7 +231,7 @@ class request(APIView):
 # startcomment
 class commentt(APIView):
     def get(self, request):
-        commentt = comment.objects.all()
+        commentt = commentmodel.objects.all()
         serializer = commentSerializer(commentt, many=True)
         return Response({
             'status':200,'msg':'success',
@@ -260,8 +261,8 @@ class comment(APIView):
      
      def get(self,request,id):
          try:
-             commentt=comment.objects.get(id=id)
-         except comment.DoesNotExist:
+             commentt=commentmodel.objects.get(id=id)
+         except commentmodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'not found'} )
          serializer=commentSerializer(commentt)
         
@@ -271,8 +272,8 @@ class comment(APIView):
  
      def put(self,request,id):
            try:
-             commentt=comment.objects.get(id=id)
-           except comment.DoesNotExist:
+             commentt=commentmodel.objects.get(id=id)
+           except commentmodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
            serializer= commentSerializer(commentt,data=request.data)
           
@@ -286,8 +287,8 @@ class comment(APIView):
           
      def delete(self,request,id):
           try:
-             commentt=comment.objects.get(id=id)
-          except comment.DoesNotExist:
+             commentt=commentmodel.objects.get(id=id)
+          except commentmodel.DoesNotExist:
              return Response({'status':404,'errors':serializer.errors,'msg':'id not found'} )
         
           commentt.delete()
